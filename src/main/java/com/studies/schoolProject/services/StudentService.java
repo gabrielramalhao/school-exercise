@@ -37,8 +37,9 @@ public class StudentService {
         return studentRepository.save(entity);
     }
 
-
     private void updateData(Student entity, Student obj) {
         entity.setName(obj.getName());
+        entity.setProfessor(obj.getProfessor());
+        entity.setClasses(obj.getClasses());
     }
 }

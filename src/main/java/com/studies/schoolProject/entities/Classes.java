@@ -11,19 +11,15 @@ import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_classes")
 @Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
-@AllArgsConstructor
 public class Classes {
 
     @Id
@@ -32,10 +28,28 @@ public class Classes {
     private Long id;
     private String className;
 
+    public Classes(Long id, String className, Professor professor) {
+        this.id = id;
+        this.className = className;
+        this.professor = professor;
+    }
+
     @OneToOne
     @MapsId
     private Professor professor;
 
     @OneToMany(mappedBy = "classes")
     private List<Student> students = new ArrayList<>();
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
+    }
 }

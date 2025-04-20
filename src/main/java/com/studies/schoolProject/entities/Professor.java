@@ -3,7 +3,6 @@ package com.studies.schoolProject.entities;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.micrometer.common.lang.NonNull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,12 +14,10 @@ import jakarta.persistence.Table;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 @Entity
 @Table(name = "tb_professor")
 @Getter
-@Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 public class Professor {
@@ -34,11 +31,23 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
-    @NonNull private String name;
+    private String name;
 
     @OneToOne(mappedBy = "professor", cascade = CascadeType.ALL)
     private Classes classes;
 
     @OneToMany(mappedBy = "professor")
     private List<Student> students = new ArrayList<>();
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setClasses(Classes classes) {
+        this.classes = classes;
+    }
 }
