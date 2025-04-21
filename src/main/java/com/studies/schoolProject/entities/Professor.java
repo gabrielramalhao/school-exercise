@@ -3,6 +3,8 @@ package com.studies.schoolProject.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,9 +35,11 @@ public class Professor {
     private Long id;
     private String name;
 
+    @JsonIgnore
     @OneToOne(mappedBy = "professor", cascade = CascadeType.ALL)
     private Classes classes;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "professor")
     private List<Student> students = new ArrayList<>();
 
