@@ -35,7 +35,6 @@ public class Professor {
     private Long id;
     private String name;
 
-    @JsonIgnore
     @OneToOne(mappedBy = "professor", cascade = CascadeType.ALL)
     private Classes classes;
 

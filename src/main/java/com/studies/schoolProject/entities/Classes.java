@@ -3,6 +3,8 @@ package com.studies.schoolProject.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,10 +36,12 @@ public class Classes {
         this.professor = professor;
     }
 
+    @JsonIgnore
     @OneToOne
     @MapsId
     private Professor professor;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "classes")
     private List<Student> students = new ArrayList<>();
 

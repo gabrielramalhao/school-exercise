@@ -1,5 +1,7 @@
 package com.studies.schoolProject.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -31,10 +33,12 @@ public class Student {
         this.classes = classes;
     }
 
+
     @ManyToOne
     @JoinColumn(name = "professor_id")
     private Professor professor;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "classes_id")
     private Classes classes;
