@@ -22,4 +22,15 @@ public class ClassesService {
         var obj = classesRepository.findById(id);
         return obj.get();
     }
+
+    public Classes insert(Classes obj) {
+        classesRepository.save(obj);
+        return obj;
+    }
+
+    public void remove(long id) {
+        classesRepository.deleteById(id);
+    }
+
+    
 }
